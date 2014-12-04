@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Newey</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <% if user_signed_in? %>
+    oh hai <%= current_user.email %>
+  <% else %>
+    <%= link_to "Sign Up", "#", "data-toggle"=>"modal", "data-target"=>"#signup-modal" %>
+
+    <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Sign up and have the funz</h2>
+          </div>
+
+          <div class="modal-body">
+            <div id="signup-form">
+              <%= render partial: "users/form" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+
+  <%= link_to "Manage", "/manager" %>
+
+</body>
+</html>
